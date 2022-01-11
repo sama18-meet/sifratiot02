@@ -11,7 +11,7 @@ module mult32x32 (
 
 logic a_sel;
 logic b_sel;
-logic shift_sel;
+logic [1:0] shift_sel;
 logic upd_prod;
 logic clr_prod;
 
