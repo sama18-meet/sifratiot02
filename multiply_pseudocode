@@ -1,0 +1,16 @@
+
+
+int product(a, b) {
+    int product = 0;
+    for (int j=0; j<N; j+=2) {
+        for (int i=0; i<N; i++) {
+            int a_i = a.shift_right(8*i);
+            int b_j = b.shift_right(8*j);
+            int temp = multiply16x8(a_i[7:0], b_j[15:0]);
+            temp = temp.shift_left(8*j);
+            temp = temp.shift_left(8*i);
+            prod =+ temp;
+        }
+    }
+    return prod;
+}
