@@ -12,7 +12,7 @@ module mult32x32_test;
 	mult32x32 inst(.clk(clk), .reset(reset), .start(start), .a(a), .b(b), .busy(busy), .product(product));
 	
 	always begin
-		#10 clk = ~clk; // every 10 time units, clk will become not clk
+		#1 clk = ~clk; // every 10 time units, clk will become not clk
 	end
 	
 	initial begin
