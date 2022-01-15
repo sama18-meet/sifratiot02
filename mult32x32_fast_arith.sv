@@ -24,11 +24,18 @@ logic [63:0] shifted_res;
 
 always_comb begin
 
-	if(a[31:16] == 16{1'b0}) begin
+	if(a[31:16] == 16'b0) begin
 		a_msw_is_0 = 1;
 	end
-	if(b[31:16] == 16{1'b0}) begin
+	else begin
+		a_msw_is_0 = 0;
+	end
+	
+	if(b[31:16] == 16'b0) begin
 		b_msw_is_0 = 1;
+	end
+	else begin
+		b_msw_is_0 = 0;
 	end
 	
 	
