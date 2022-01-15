@@ -16,7 +16,7 @@ typedef enum {
 	start_st,
 	a_0_b_0_st,
 	a_1_b_0_st,
-	a_0_b_1_st,
+	a_0_b_1_st
 } sm_type;
 
 sm_type current_state;
