@@ -76,7 +76,7 @@ always_comb begin
 		
 		a_0_b_1_st: begin
 			shift_sel = 2'b10;
-			next_state = start_st;
+			next_state = idle_st;
 		end	
 
 	endcase
