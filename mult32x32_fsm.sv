@@ -13,10 +13,10 @@ module mult32x32_fsm (
 
 typedef enum {
 	idle_st,
+	start_st,
 	a_0_b_0_st,
 	a_1_b_0_st,
 	a_0_b_1_st,
-	a_1_b_1_st
 } sm_type;
 
 sm_type current_state;
@@ -43,36 +43,42 @@ always_comb begin
 	clr_prod = 1'b0;
 	
 	case (current_state)
+	
 		idle_st: begin
-			if (start == 1'b1) begin
-				next_state = a_0_b_0_st;
+			if (start == 1'b1) begin 
+				next_state = start_st;
 				busy = 1'b0;
-				a_sel = 1'b0;
-				b_sel = 1'b0;
-				shift_sel = 2'b0;
+				clr_prod = 1'b1;
 			end
-			else begin
+			else begin 
 				next_state = idle_st;
 				busy = 1'b0;
 				upd_prod = 1'b0;
 			end
 		end
-		a_0_b_0_st: begin
-			next_state = a_1_b_0_st;
-			b_sel = 1'b0;
-		end
-		a_1_b_0_st: begin
-			next_state = a_0_b_1_st;
+		
+		start_st: begin 
 			a_sel = 1'b0;
+			b_sel = 1'b0;
+			shift_sel = 1'b0;
+			next_state = a_0_b_0_st;
 		end
+		
+		a_0_b_0_st: begin 
+			b_sel = 1'b0;
+			next_state = a_1_b_0_st;
+		end
+		
+		a_1_b_0_st: begin
+			a_sel = 1'b0;
+			next_state = a_0_b_1_st;
+		end
+		
 		a_0_b_1_st: begin
-			next_state = a_1_b_1_st;
 			shift_sel = 2'b10;
-		end
-		a_1_b_1_st: begin
-			next_state = idle_st;
-			upd_prod = 1'b0;
-		end
+			next_state = start_st;
+		end	
+
 	endcase
 end
 
